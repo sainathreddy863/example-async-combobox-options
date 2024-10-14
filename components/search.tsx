@@ -1,17 +1,17 @@
-import * as React from 'react';
-import { useDebounce } from 'use-debounce';
-import { useQuery } from '@tanstack/react-query';
+import * as React from "react";
+import { useDebounce } from "use-debounce";
+import { useQuery } from "@tanstack/react-query";
 
 import {
   Command,
   CommandInput,
   CommandItem,
   CommandList,
-} from '@/components/ui/command';
-import type { Product, SearchResponse } from '@/types';
-import { searchProductsByName } from '@/api';
-import { Check } from 'lucide-react';
-import { cn } from '@/lib/utils';
+} from "@/components/ui/command";
+import type { Product, SearchResponse } from "@/types";
+import { searchProductsByName } from "@/api";
+import { Check } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface SearchProps {
   selectedResult?: Product;
@@ -19,7 +19,7 @@ interface SearchProps {
 }
 
 export function Search({ selectedResult, onSelectResult }: SearchProps) {
-  const [searchQuery, setSearchQuery] = React.useState('');
+  const [searchQuery, setSearchQuery] = React.useState("");
 
   const handleSelectResult = (product: Product) => {
     onSelectResult(product);
@@ -50,8 +50,8 @@ export function Search({ selectedResult, onSelectResult }: SearchProps) {
 
 interface SearchResultsProps {
   query: string;
-  selectedResult: SearchProps['selectedResult'];
-  onSelectResult: SearchProps['onSelectResult'];
+  selectedResult: SearchProps["selectedResult"];
+  onSelectResult: SearchProps["onSelectResult"];
 }
 
 function SearchResults({
@@ -68,7 +68,7 @@ function SearchResults({
     isLoading: isLoadingOrig,
     isError,
   } = useQuery<SearchResponse>({
-    queryKey: ['search', debouncedSearchQuery],
+    queryKey: ["search", debouncedSearchQuery],
     queryFn: () => searchProductsByName(debouncedSearchQuery),
     enabled,
   });
@@ -96,8 +96,8 @@ function SearchResults({
           >
             <Check
               className={cn(
-                'mr-2 h-4 w-4',
-                selectedResult?.id === id ? 'opacity-100' : 'opacity-0'
+                "mr-2 h-4 w-4",
+                selectedResult?.id === id ? "opacity-100" : "opacity-0"
               )}
             />
             {title}

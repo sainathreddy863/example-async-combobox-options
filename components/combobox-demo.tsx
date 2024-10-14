@@ -30,22 +30,7 @@ export function ComboboxDemo() {
   const displayName = selected ? selected.title : 'Select product';
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
-        <Button
-          variant="outline"
-          role="combobox"
-          className={cn('justify-between', POPOVER_WIDTH)}
-        >
-          {displayName}
+    <Search selectedResult={selected} onSelectResult={handleSetActive} />
 
-          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-        </Button>
-      </PopoverTrigger>
-
-      <PopoverContent side="bottom" className={cn('p-0', POPOVER_WIDTH)}>
-        <Search selectedResult={selected} onSelectResult={handleSetActive} />
-      </PopoverContent>
-    </Popover>
   );
 }
